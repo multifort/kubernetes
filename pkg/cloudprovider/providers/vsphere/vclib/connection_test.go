@@ -94,7 +94,7 @@ func TestWithValidCaCert(t *testing.T) {
 	}
 
 	// Ignoring error here, because we only care about the TLS connection
-	connection.NewClient(context.Background())
+	_, _ = connection.NewClient(context.Background())
 
 	verifyConnectionWasMade()
 }
@@ -151,7 +151,7 @@ func TestWithValidThumbprint(t *testing.T) {
 	}
 
 	// Ignoring error here, because we only care about the TLS connection
-	connection.NewClient(context.Background())
+	_, _ = connection.NewClient(context.Background())
 
 	verifyConnectionWasMade()
 }
@@ -170,8 +170,6 @@ func TestWithInvalidCaCertPath(t *testing.T) {
 }
 
 func TestInvalidCaCert(t *testing.T) {
-	t.Skip("Waiting for https://github.com/vmware/govmomi/pull/1154")
-
 	connection := &vclib.VSphereConnection{
 		Hostname: "should-not-matter",
 		Port:     "should-not-matter",

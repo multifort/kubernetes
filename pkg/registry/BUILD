@@ -22,7 +22,6 @@ filegroup(
     name = "all-srcs",
     srcs = [
         ":package-srcs",
-        "//pkg/registry/admissionregistration/initializerconfiguration:all-srcs",
         "//pkg/registry/admissionregistration/mutatingwebhookconfiguration:all-srcs",
         "//pkg/registry/admissionregistration/rest:all-srcs",
         "//pkg/registry/admissionregistration/validatingwebhookconfiguration:all-srcs",
@@ -32,6 +31,8 @@ filegroup(
         "//pkg/registry/apps/replicaset:all-srcs",
         "//pkg/registry/apps/rest:all-srcs",
         "//pkg/registry/apps/statefulset:all-srcs",
+        "//pkg/registry/auditregistration/auditsink:all-srcs",
+        "//pkg/registry/auditregistration/rest:all-srcs",
         "//pkg/registry/authentication/rest:all-srcs",
         "//pkg/registry/authentication/tokenreview:all-srcs",
         "//pkg/registry/authorization/localsubjectaccessreview:all-srcs",

@@ -19,14 +19,12 @@ package options
 import (
 	"github.com/spf13/pflag"
 
-	"k8s.io/kubernetes/pkg/apis/componentconfig"
+	kubectrlmgrconfig "k8s.io/kubernetes/pkg/controller/apis/config"
 )
 
 // SAControllerOptions holds the ServiceAccountController options.
 type SAControllerOptions struct {
-	ServiceAccountKeyFile  string
-	ConcurrentSATokenSyncs int32
-	RootCAFile             string
+	*kubectrlmgrconfig.SAControllerConfiguration
 }
 
 // AddFlags adds flags related to ServiceAccountController for controller manager to the specified FlagSet
@@ -41,7 +39,7 @@ func (o *SAControllerOptions) AddFlags(fs *pflag.FlagSet) {
 }
 
 // ApplyTo fills up ServiceAccountController config with options.
-func (o *SAControllerOptions) ApplyTo(cfg *componentconfig.SAControllerConfiguration) error {
+func (o *SAControllerOptions) ApplyTo(cfg *kubectrlmgrconfig.SAControllerConfiguration) error {
 	if o == nil {
 		return nil
 	}

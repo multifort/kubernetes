@@ -42,6 +42,8 @@ This is an example of how to build a kube-like controller with a single type.
 
 ```sh
 # assumes you have a working kubeconfig, not required if operating in-cluster
+$ go get k8s.io/sample-controller
+$ cd $GOPATH/src/k8s.io/sample-controller
 $ go build -o sample-controller .
 $ ./sample-controller -kubeconfig=$HOME/.kube/config
 
@@ -105,9 +107,8 @@ $ kubectl create -f artifacts/examples/crd-validation.yaml
 
 ## Subresources
 
-Custom Resources support `/status` and `/scale` subresources as an
-[alpha feature](https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/#subresources) in v1.10.
-Enable this feature using the `CustomResourceSubresources` feature gate on the [kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver):
+Custom Resources support `/status` and `/scale` subresources as a [beta feature](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#subresources) in v1.11 and is enabled by default.
+This feature is [alpha](https://v1-10.docs.kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/#subresources) in v1.10 and to enable it you need to set the `CustomResourceSubresources` feature gate on the [kube-apiserver](https://kubernetes.io/docs/admin/kube-apiserver):
 
 ```sh
 --feature-gates=CustomResourceSubresources=true

@@ -78,7 +78,7 @@ type NetworkPolicySpec struct {
 	Egress []NetworkPolicyEgressRule
 
 	// List of rule types that the NetworkPolicy relates to.
-	// Valid options are Ingress, Egress, or Ingress,Egress.
+	// Valid options are "Ingress", "Egress", or "Ingress,Egress".
 	// If this field is not specified, it will default based on the existence of Ingress or Egress rules;
 	// policies that contain an Egress section are assumed to affect Egress, and all policies
 	// (whether or not they contain an Ingress section) are assumed to affect Ingress.
@@ -134,7 +134,7 @@ type NetworkPolicyEgressRule struct {
 
 // NetworkPolicyPort describes a port to allow traffic on
 type NetworkPolicyPort struct {
-	// The protocol (TCP or UDP) which traffic must match. If not specified, this
+	// The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this
 	// field defaults to TCP.
 	// +optional
 	Protocol *api.Protocol

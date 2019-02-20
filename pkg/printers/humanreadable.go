@@ -22,7 +22,8 @@ import (
 	"io"
 	"reflect"
 	"strings"
-	"text/tabwriter"
+
+	"github.com/liggitt/tabwriter"
 
 	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -371,6 +372,11 @@ func PrintTable(table *metav1beta1.Table, output io.Writer, options PrintOptions
 	for _, row := range table.Rows {
 		first := true
 		for i, cell := range row.Cells {
+			if i >= len(table.ColumnDefinitions) {
+				// https://issue.k8s.io/66379
+				// don't panic in case of bad output from the server, with more cells than column definitions
+				break
+			}
 			column := table.ColumnDefinitions[i]
 			if !options.Wide && column.Priority != 0 {
 				continue
